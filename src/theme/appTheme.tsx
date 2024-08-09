@@ -7,7 +7,8 @@ export const styles= StyleSheet.create({
         fontSize:27,
         paddingHorizontal:30,
         paddingVertical:30,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        textAlign:'center'
     },
     contenBody:{
         backgroundColor: SECUNDARY_COLOR,

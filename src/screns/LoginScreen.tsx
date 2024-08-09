@@ -7,6 +7,8 @@ import { styles } from '../theme/appTheme';
 import { ImputComponent } from '../components/ImputComponent';
 import { ButonnComponent } from '../components/ButonnComponent';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { RootStackParams } from '../navigator/stackNavigator';
+import { StackScreenProps } from '@react-navigation/stack';
 
 
 interface FormLogin {
@@ -20,11 +22,12 @@ interface User {
   email: string;
   password: string;
 }
-export const LoginScreen = () => {
+interface Props extends StackScreenProps<RootStackParams, 'Login'> { }
+export const LoginScreen = ({ navigation }: Props) => {
   //arreglo de usuario permitir inicio de sesion 
   const user: User[] = [
-{ id: 1, email: 'iseduardot92@gmail.com', password: '123456'},
-{ id: 2, email: 'eduardot92@gmail.com', password: '12345689'}
+    { id: 1, email: 'iseduardot92@gmail.com', password: '123456' },
+    { id: 2, email: 'eduardot92@gmail.com', password: '12345689' }
   ];
   //hook useState manipular estado de formulario 
 
@@ -47,7 +50,7 @@ export const LoginScreen = () => {
 
   //funcion q permita iniciar sesion 
   const handleSingnIn = () => {
-    if(formLogin.email === ' ' || formLogin.password === ''){
+    if (formLogin.email === ' ' || formLogin.password === '') {
       Alert.alert(
         "Error",
         "porfavor ,completar campos"
@@ -55,7 +58,7 @@ export const LoginScreen = () => {
       return;
     }
 
-    if (verifyUser!()){
+    if (verifyUser!()) {
       Alert.alert(
         "error",
         "correo o contraseña incorrecta"
@@ -73,31 +76,40 @@ export const LoginScreen = () => {
   return (
     <View>
       <StatusBar backgroundColor={PRIMARY_COLOR} />
-      <TitleComponet title='Iniciar Sesión' />
+      <TitleComponet title='Biemvenido' />
       <BodyComponent>
         <View>
-          <Text style={styles.titleBody}>Bienvenido de nuevo ! </Text>
-          <Text style={styles.descriptionBody}>Realiza tus compras seguras </Text>
+          <Text style={styles.titleBody}>Navegacion </Text>
+          <Text style={styles.descriptionBody}>Elige una opcion  </Text>
         </View>
-        <View style={styles.contentInput}>
-          <ImputComponent placeholder='correo'
-            handleSetValues={handleSetValues}
-            name='email' />
-          <ImputComponent
-            placeholder='contraseña'
-            handleSetValues={handleSetValues}
-            name='password'
-            isPassword={hiddenPassword}
-            hasIcon={true}
-            actionIcon={() =>sethiddenPassword(!hiddenPassword) }
-          />
 
-        </View>
-        <ButonnComponent textButton='iniciar' actionButton={handleSingnIn} />
-        <TouchableOpacity>
-          <Text style={styles.textRedirect}> no tienes cuenta registrate ahora </Text>
+
+        <TouchableOpacity 
+        style={styles.contentInput} 
+        onPress={() => navigation.navigate('screen2')}>
+          <Text 
+          style={styles.textRedirect}>Imagen I</Text>
         </TouchableOpacity>
+        <TouchableOpacity 
+        style={styles.contentInput} 
+        onPress={() => navigation.navigate('screen3')}>
+          <Text 
+          style={styles.textRedirect}>Imagen II</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+        style={styles.contentInput} 
+        onPress={() => navigation.navigate('screen4')}>
+          <Text style={styles.textRedirect}> MAYOR O IGUAL</Text>
+        </TouchableOpacity>
+        <TouchableOpacity 
+        style={styles.contentInput}
+         onPress={() => navigation.navigate('screen5')}>
+          <Text style={styles.textRedirect}> MENOR O IGUAL</Text>
+        </TouchableOpacity>
+
       </BodyComponent>
     </View>
   )
 }
+
+
