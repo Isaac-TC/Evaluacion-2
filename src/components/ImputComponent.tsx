@@ -3,7 +3,7 @@ import { TextInput } from 'react-native-gesture-handler'
 import { IMPUT_COLOR, PRIMARY_COLOR } from '../common/constantsColor'
 import { styles } from '../theme/appTheme';
 import { View, ViewBase } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+
 
 //interface - props
 interface Props{
@@ -15,28 +15,14 @@ interface Props{
     actionIcon?:() => void;
 }
 
-export const ImputComponent = ({ placeholder, handleSetValues, name ,isPassword= false, hasIcon= true, actionIcon }:Props) => {
+export const ImputComponent = ({ placeholder, handleSetValues }:Props) => {
   return (
     <View>
-      {
-        (hasIcon)
-        ?<Icon
-        name='visibility'
-        size={25}
-        onPress={actionIcon}
-        color={PRIMARY_COLOR}
-        styles={styles.iconPassword}/>
-        :null
-      }
-     
-      
-      
     
     <TextInput
-    placeholder={placeholder}
+    placeholder='numero 1'
     keyboardType='default'
-    onChangeText={(value)=> handleSetValues(name, value)}
-    secureTextEntry={isPassword}
+    
     style={styles.imputText}
     />
     </View>

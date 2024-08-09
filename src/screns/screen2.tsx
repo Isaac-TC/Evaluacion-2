@@ -1,5 +1,5 @@
 import React from 'react'
-import { StatusBar, Text, View } from 'react-native'
+import { Image, StatusBar, Text, View } from 'react-native'
 import { styles } from '../theme/appTheme'
 import { TitleComponet } from '../components/TitleComponet'
 import { BodyComponent } from '../components/BodyComponent';
@@ -12,7 +12,7 @@ export const screen2 = () => {
       <TitleComponet title='Imagen I' />
       <BodyComponent> 
         <View>
-          
+        <Image source={require('../../assets/descarga.jpg')} style={styles.image}/>
         
         </View>
         </BodyComponent>
